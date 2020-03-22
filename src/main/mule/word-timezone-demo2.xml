@@ -8,7 +8,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 		<http:listener-connection host="0.0.0.0" port="8082" />
 	</http:listener-config>
 	<http:request-config name="HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="aa16b20c-79bd-49ad-95af-19137bd5b7e7" basePath="/api/timezone" >
-		<http:request-connection host="worldtimeapi" />
+		<http:request-connection host="worldtimeapi.org" />
 	</http:request-config>
 	<flow name="word-timezone-demo2Flow" doc:id="19c6fa6d-3538-4d4a-80fd-d4d6c582c3f1" >
 		<http:listener doc:name="Listener" doc:id="676a572c-533a-461a-a7b6-33c358d94599" config-ref="HTTP_Listener_config" path="/{region}/{city}"/>
@@ -16,8 +16,8 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 			<http:uri-params ><![CDATA[#[output application/java
 ---
 {
-	region : attribute.uriParams.region,
-	city : attribute.uriParams.city
+	region : attributes.uriParams.region,
+	city : attributes.uriParams.city
 }]]]></http:uri-params>
 		</http:request>
 	</flow>
